@@ -1,25 +1,27 @@
-import { Task } from '../Task';
-import styles from './tasks.module.css';
+import { Task } from "../Task";
+import styles from "./tasks.module.css";
 
-export function Tasks({tasks, onComplete, onDelete}){
+export function Tasks({ tasks, onDelete, searchQuery }) {
+  const filteredTasks = tasks.filter(
+    (task) =>
+      task.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      task.description.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   const taskQuantity = tasks.length;
-  const completedTask = tasks.filter(task => task.isCompleted).length;
   return (
     <section className={styles.tasks}>
       <header className={styles.header}>
         <div>
-          <p>Create tasks</p>
-          <span>{taskQuantity
-          }</span>
-        </div>
-        <div>
-          <p className={styles.textPurple}>Completed</p>
-          <span>{completedTask} of {taskQuantity}</span>
+          <p>Confession(s)</p>
+          <span>{taskQuantity}</span>
         </div>
       </header>
       <div className={styles.list}>
-        {tasks.map(task => <Task key={task.id} task={task} onComplete={onComplete} onDelete={onDelete}/>)}
+        {filteredTasks.map((task) => (
+          <Task key={task.id} task={task} onDelete={onDelete} />
+        ))}
       </div>
     </section>
-  )
+  );
 }

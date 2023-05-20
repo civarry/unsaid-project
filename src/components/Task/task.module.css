@@ -1,49 +1,87 @@
-.task {
-  width: 100%;
-  background: #262626;
-  border: 1px solid #333333;
-  padding: 16px;
-  border-radius: 8px;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* outline: 1px solid red; */
+}
+.cardContainer{
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: top;
+  margin: 10px auto;
+  width: 345px;
+  background-color: #FFFFFE;
+  border: 3px solid #AB9081; 
+}
+.cardHeader{
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  width: 100%;
+  background-color: #F3E8E5;
+  border-bottom: 3px solid #AB9081;
+  height: 32px;
+}
+.abcStyle span{
+  background-color: #AB9081;
+  color: #5E4F42;
+  font-weight: bold;
+  font-size: 24px;
+  padding:2px;
+  height: 30px;
+}
+.cardHeader span{
+  font-size: 24px;
+  color: #5E4F42;
+  padding: 2px;
+  width: 100%;
+}
+.cardHeader i{
+  font-size: 27px;
+  color: #5E4F42;
+  padding-right: 3px;
+}
+.cardBody{
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  gap: 12px;
-}
-
-.task p {
-  font-size: 14px;
-  line-height: 19px;
-  color: #F2F2F2;
-  margin-right: auto;
-}
-
-p.textCompleted {
-  color: #808080;
-  text-decoration: line-through;
-}
-
-.checkContainer {
-  width: 18px;
-  height: 18px;
-  background: none;
-  border: none;
-}
-
-.checkContainer div {
+  padding: 10px 10px 0px 10px;
   width: 100%;
   height: 100%;
-  border-radius: 999px;
-  border: 2px solid #4EA8DE;
 }
-
-.checkContainer svg {
+.cardDescription{
   width: 100%;
-  height: 100%;
-  color: #5E60CE;
+  background-color: #F3E8E5;
+  padding: 10px;
+  height:auto;
+}
+.cardDescription p{
+  font-size: 24px;
+  color: #5E4F42;
+  padding: 2px;
+}
+.cardFooter{
+  display: flex;
+  flex-direction: row; 
+  justify-content: space-around;
+  width: 100%;
+}
+.cardFooter span{
+  font-size: 24px;
+  color: #5E4F42;
+  margin-top: 11px;
 }
 
-.deleteButton {
-  background: none;
+
+.deleteButton{
+  background-color: #AB9081;
+  width: 100%;
+  height: 50px;
+  color: #5E4F42;
+  font-weight: bold;
+  font-size: 24px;
   border: none;
-  color: #808080;
+  cursor: pointer;
+  padding: 10px;
 }
