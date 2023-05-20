@@ -1,5 +1,7 @@
 import { Header } from "./components/Header";
 import { Tasks } from "./components/Tasks";
+import { Navbar } from "./components/Navbar";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 
@@ -9,19 +11,18 @@ function App() {
   const [tasks, setTasks] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
 
-  function loadSaveTasks() {
+  function loadSavedTasks() {
     const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
-    console.log(saved);
     if (saved) {
       setTasks(JSON.parse(saved));
     }
   }
 
   useEffect(() => {
-    loadSaveTasks();
+    loadSavedTasks();
   }, []);
 
-  function setTaskAndSave(newTasks) {
+  function setTasksAndSave(newTasks) {
     setTasks(newTasks);
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newTasks));
   }
@@ -31,29 +32,41 @@ function App() {
   }
 
   function addTask(taskTitle, taskDescription) {
-    setTaskAndSave([
-      ...tasks,
-      {
-        id: crypto.randomUUID(),
-        title: taskTitle,
-        description: taskDescription,
-      },
-    ]);
+    const newTask = {
+      id: crypto.randomUUID(),
+      title: taskTitle,
+      description: taskDescription,
+    };
+    const updatedTasks = [newTask, ...tasks];
+    setTasksAndSave(updatedTasks);
   }
 
   function deleteTaskById(taskId) {
-    const newTasks = tasks.filter((task) => task.id !== taskId);
-    setTaskAndSave(newTasks);
+    const updatedTasks = tasks.filter((task) => task.id !== taskId);
+    setTasksAndSave(updatedTasks);
   }
 
   return (
     <>
-      <Header onAddTask={addTask} onSearch={handleSearch} />
-      <Tasks
-        tasks={tasks}
-        onDelete={deleteTaskById}
-        searchQuery={searchQuery}
-      />
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Tasks
+                tasks={tasks.reverse()}
+                onDelete={deleteTaskById}
+                searchQuery={searchQuery}
+              />
+            }
+          />
+          <Route
+            path="/add"
+            element={<Header onAddTask={addTask} onSearch={handleSearch} />}
+          />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

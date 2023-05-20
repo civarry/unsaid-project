@@ -10,19 +10,42 @@ export function Header({ onAddTask, onSearch }) {
 
   function handleSubmit(event) {
     event.preventDefault();
+
+    if (title.trim() === "") {
+      // Show an error message or perform any desired action
+      alert("Title cannot be empty");
+      return;
+    }
+
+    if (description.trim() === "") {
+      // Show an error message or perform any desired action
+      alert("Description cannot be empty");
+      return;
+    }
+
+    if (title.length < 2) {
+      // Show an error message or perform any desired action
+      alert("Title must be at least 2 characters long");
+      return;
+    }
+
+    if (description.length < 10) {
+      // Show an error message or perform any desired action
+      alert("Description must be at least 10 characters long");
+      return;
+    }
+
     onAddTask(title, description);
     setTitle("");
     setDescription("");
     setCharacterCount(0);
   }
 
-  const handleSearch = (event) => {
-    const query = event.target.value;
-    onSearch(query);
-  };
-
   function onChangeTitle(event) {
-    setTitle(event.target.value);
+    const text = event.target.value;
+    if (text.length <= 18) {
+      setTitle(event.target.value);
+    }
   }
 
   function onChangeDescription(event) {
@@ -35,14 +58,7 @@ export function Header({ onAddTask, onSearch }) {
 
   return (
     <header className={styles.header}>
-      <img src={todoLogo} alt="" />
       <form onSubmit={handleSubmit} className={styles.newTaskForm}>
-        <input
-          className={styles.search}
-          type="text"
-          placeholder="Search for keywords..."
-          onChange={handleSearch}
-        />
         <div className={styles.formHeader}>
           <input
             id="title"

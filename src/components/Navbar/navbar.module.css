@@ -1,0 +1,39 @@
+.header {
+  background: #0D0D0D;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  position: relative;
+}
+
+.navbar {
+  position: absolute;
+  bottom: 0;
+  color: #ffbd59;
+  padding: 10px;
+}
+
+ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  margin: 0 10px;
+}
+
+a {
+  text-decoration: none;
+  color: #ffbd59;
+  padding: 5px;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #ffbd59;
+  font-weight: bold;
+}

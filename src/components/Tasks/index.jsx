@@ -1,7 +1,30 @@
 import { Task } from "../Task";
 import styles from "./tasks.module.css";
+import { useState } from "react";
 
-export function Tasks({ tasks, onDelete, searchQuery }) {
+function SearchInput({ onSearch }) {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  function handleSearchChange(event) {
+    const query = event.target.value;
+    setSearchQuery(query);
+    onSearch(query);
+  }
+
+  return (
+    <input
+      className={styles.search}
+      type="text"
+      placeholder="Search for keywords..."
+      value={searchQuery}
+      onChange={handleSearchChange}
+    />
+  );
+}
+
+export function Tasks({ tasks, onDelete, onSearch }) {
+  const [searchQuery, setSearchQuery] = useState("");
+
   const filteredTasks = tasks.filter(
     (task) =>
       task.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -9,8 +32,14 @@ export function Tasks({ tasks, onDelete, searchQuery }) {
   );
 
   const taskQuantity = tasks.length;
+
+  function handleSearch(query) {
+    setSearchQuery(query);
+  }
+
   return (
     <section className={styles.tasks}>
+      <SearchInput onSearch={handleSearch} />
       <header className={styles.header}>
         <div>
           <p>Confession(s)</p>

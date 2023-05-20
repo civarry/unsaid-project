@@ -36,6 +36,10 @@
   color: #5E4F42;
   padding: 2px;
   width: 100%;
+  max-width: 255px; /* Set the desired maximum width */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .cardHeader i{
   font-size: 27px;
@@ -55,6 +59,9 @@
   background-color: #F3E8E5;
   padding: 10px;
   height:auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: wrap;
 }
 .cardDescription p{
   font-size: 24px;
@@ -66,6 +73,7 @@
   flex-direction: row; 
   justify-content: space-around;
   width: 100%;
+  overflow: hidden;
 }
 .cardFooter span{
   font-size: 24px;

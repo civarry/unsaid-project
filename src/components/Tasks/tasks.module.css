@@ -2,7 +2,7 @@
   width: 100%;
   max-width: 736px;
   margin: 0 auto;
-  margin-top: 195px;
+  margin-top: 30px;
   padding: 0 1rem;
 }
 
@@ -37,4 +37,10 @@
 .list {
   display: flex;
   flex-direction: column;
+}
+.search{
+  background-color: #f2e9e2;
+  border: 2px solid #b48770;
+  color: #614d40;
+  border-radius: 10px;
 }
