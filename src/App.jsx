@@ -2,29 +2,42 @@ import { Header } from "./components/Header";
 import { Tasks } from "./components/Tasks";
 import { Navbar } from "./components/Navbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import { app, db } from "./firebase-config";
+import { collection, doc, getDoc, setDoc } from "firebase/firestore";
+import { v4 as uuidv4 } from "uuid";
 
-const LOCAL_STORAGE_KEY = "todo:savedTasks";
+const COLLECTION_NAME = "tasks";
 
 function App() {
   const [tasks, setTasks] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
 
-  function loadSavedTasks() {
-    const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
-    if (saved) {
-      setTasks(JSON.parse(saved));
-    }
-  }
-
   useEffect(() => {
     loadSavedTasks();
   }, []);
 
-  function setTasksAndSave(newTasks) {
+  async function loadSavedTasks() {
+    try {
+      const docRef = doc(db, COLLECTION_NAME, "tasks");
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        setTasks(docSnap.data().tasks);
+      }
+    } catch (error) {
+      console.error("Error loading tasks from Firestore:", error);
+    }
+  }
+
+  async function setTasksAndSave(newTasks) {
     setTasks(newTasks);
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newTasks));
+    try {
+      const docRef = doc(db, COLLECTION_NAME, "tasks");
+      await setDoc(docRef, { tasks: newTasks });
+      console.log("Tasks saved to Firestore");
+    } catch (error) {
+      console.error("Error saving tasks to Firestore:", error);
+    }
   }
 
   function handleSearch(query) {
@@ -33,7 +46,7 @@ function App() {
 
   function addTask(taskTitle, taskDescription) {
     const newTask = {
-      id: crypto.randomUUID(),
+      id: uuidv4(),
       title: taskTitle,
       description: taskDescription,
     };
