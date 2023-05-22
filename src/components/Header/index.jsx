@@ -62,7 +62,7 @@ export function Header({ onAddTask, onSearch }) {
         <div className={styles.formHeader}>
           <input
             id="title"
-            placeholder="Enter a title..."
+            placeholder="Message to..."
             type="text"
             value={title}
             onChange={onChangeTitle}

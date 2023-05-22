@@ -22,7 +22,7 @@ function SearchInput({ onSearch }) {
   );
 }
 
-export function Tasks({ tasks, onDelete, onSearch }) {
+export function Tasks({ tasks, onDelete, onSearch, isAdmin }) {
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredTasks = tasks.filter(
@@ -48,7 +48,12 @@ export function Tasks({ tasks, onDelete, onSearch }) {
       </header>
       <div className={styles.list}>
         {filteredTasks.map((task) => (
-          <Task key={task.id} task={task} onDelete={onDelete} />
+          <Task
+            key={task.id}
+            task={task}
+            onDelete={onDelete}
+            isAdmin={isAdmin}
+          />
         ))}
       </div>
     </section>

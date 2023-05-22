@@ -5,6 +5,7 @@
   justify-content: center;
   height: 200px;
   position: relative;
+  min-width: 345px;
 }
 
 .navbar {
@@ -26,6 +27,18 @@ li {
   margin: 0 10px;
 }
 
+.active {
+  color: #212121;
+  background-color: #ffbd59;
+  border-radius: 20px;
+}
+
+.active a {
+  color: #212121;
+  background-color: #ffbd59;
+  border-radius: 20px;
+}
+
 a {
   text-decoration: none;
   color: #ffbd59;
@@ -34,6 +47,7 @@ a {
 }
 
 a:hover {
-  color: #ffbd59;
-  font-weight: bold;
+  background-color: #ffbd59;
+  color: #212121;
+  border-radius: 20px;
 }

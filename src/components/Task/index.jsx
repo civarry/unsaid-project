@@ -25,12 +25,12 @@ export function Task({ task, onDelete }) {
           </div>
           <br />
         </div>
-        <button
+        {/* <button
           className={styles.deleteButton}
           onClick={() => onDelete(task.id)}
         >
           <TbTrash size={20} />
-        </button>
+        </button> */}
       </div>
     </div>
   );
