@@ -50,7 +50,7 @@ export function Header({ onAddTask, onSearch }) {
 
   function onChangeDescription(event) {
     const text = event.target.value;
-    if (text.length <= 264) {
+    if (text.length <= 200) {
       setDescription(text);
       setCharacterCount(text.length);
     }
@@ -78,10 +78,10 @@ export function Header({ onAddTask, onSearch }) {
             type="text"
             value={description}
             onChange={onChangeDescription}
-            maxLength={264}
+            maxLength={200}
           />
           <div className={styles.characterCounter}>
-            {characterCount} / 264 characters
+            {characterCount} / 200 characters
           </div>
         </div>
       </form>
