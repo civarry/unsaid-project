@@ -24,13 +24,13 @@ export function Task({ task, onDelete }) {
             <span>#unsaidfeelings</span>
           </div>
           <br />
+          {/* <button
+            className={styles.deleteButton}
+            onClick={() => onDelete(task.id)}
+          >
+            <TbTrash size={20} />
+          </button> */}
         </div>
-        {/* <button
-          className={styles.deleteButton}
-          onClick={() => onDelete(task.id)}
-        >
-          <TbTrash size={20} />
-        </button> */}
       </div>
     </div>
   );
