@@ -15,7 +15,16 @@
   height: 375px;
   background-color: #FFFFFE;
   border: 3px solid #AB9081; 
+  opacity: 0; /* Add initial opacity */
+  transform: translateX(100%); /* Add initial translation */
+  transition: opacity 0.8s ease, transform 0.8s ease; /* Add transition properties */
 }
+
+.cardContainer.animate {
+  opacity: 1; /* Show the card */
+  transform: translateY(0); /* Reset the translation */
+}
+
 .cardHeader{
   display: flex;
   flex-direction: row;
