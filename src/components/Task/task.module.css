@@ -15,6 +15,7 @@
   height: 375px;
   background-color: #FFFFFE;
   border: 3px solid #AB9081; 
+  position: relative;
 }
 .cardHeader{
   display: flex;
@@ -100,15 +101,23 @@
   color: #5E4F42;
 }
 
-
 .deleteButton{
-  background-color: #AB9081;
-  width: 100%;
+  width: 50px;
   height: 50px;
-  color: #5E4F42;
+  background: transparent;
   font-weight: bold;
   font-size: 24px;
   border: none;
   cursor: pointer;
-  padding: 10px;
+  padding: 5px;
+  top: 320px;
+  left: 295px;
+  position: absolute;
+}
+.deleteButton i{
+  color: #AB9081;
+}
+.deleteButton:hover{
+  color: #5E4F42;
+  background:transparent;
 }

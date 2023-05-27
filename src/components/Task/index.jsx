@@ -2,7 +2,7 @@ import styles from "./task.module.css";
 import { TbTrash } from "react-icons/tb";
 import { FiMail } from "react-icons/fi";
 // import { BsFillCheckCircleFill } from "react-icons/bs";
-export function Task({ task, onDelete }) {
+export function Task({ task, onDelete, isAdmin }) {
   return (
     <div className={styles.task}>
       {/* This is the new layout */}
@@ -24,12 +24,16 @@ export function Task({ task, onDelete }) {
             <span>#unsaidfeelings</span>
           </div>
           <br />
-          {/* <button
-            className={styles.deleteButton}
-            onClick={() => onDelete(task.id)}
-          >
-            <TbTrash size={20} />
-          </button> */}
+          {isAdmin ? (
+            <button
+              className={styles.deleteButton}
+              onClick={() => onDelete(task.id)}
+            >
+              <i>
+                <TbTrash size={20} />
+              </i>
+            </button>
+          ) : null}
         </div>
       </div>
     </div>

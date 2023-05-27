@@ -48,7 +48,7 @@ input{
   color: #614d40;
   border-radius: 10px;
 }
-button:hover{
+.addButton:hover{
   cursor: pointer;
   background-color: #614d40;
   color: #f2e9e2;

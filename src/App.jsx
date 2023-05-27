@@ -6,15 +6,18 @@ import { useState, useEffect } from "react";
 import { app, db } from "./firebase-config";
 import { collection, doc, getDoc, setDoc } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
+import { LoginForm } from "./components/Login";
 
 const COLLECTION_NAME = "tasks";
 
 function App() {
   const [tasks, setTasks] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     loadSavedTasks();
+    checkAdminStatus();
   }, []);
 
   async function loadSavedTasks() {
@@ -55,8 +58,32 @@ function App() {
   }
 
   function deleteTaskById(taskId) {
-    const updatedTasks = tasks.filter((task) => task.id !== taskId);
-    setTasksAndSave(updatedTasks);
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this task?"
+    );
+    if (confirmDelete) {
+      const updatedTasks = tasks.filter((task) => task.id !== taskId);
+      setTasksAndSave(updatedTasks);
+    }
+  }
+
+  function checkAdminStatus() {
+    const storedAdminStatus = localStorage.getItem("isAdmin");
+    if (storedAdminStatus === "true") {
+      setIsAdmin(true);
+    } else {
+      setIsAdmin(false);
+    }
+  }
+
+  function handleLogin(isAdminValue) {
+    setIsAdmin(isAdminValue);
+    localStorage.setItem("isAdmin", isAdminValue.toString());
+  }
+
+  function handleLogout() {
+    setIsAdmin(false);
+    localStorage.setItem("isAdmin", "false");
   }
 
   return (
@@ -71,12 +98,19 @@ function App() {
                 tasks={tasks.reverse()}
                 onDelete={deleteTaskById}
                 searchQuery={searchQuery}
+                isAdmin={isAdmin}
               />
             }
           />
           <Route
             path="/add"
             element={<Header onAddTask={addTask} onSearch={handleSearch} />}
+          />
+          <Route
+            path="/login"
+            element={
+              <LoginForm onLogin={handleLogin} onLogout={handleLogout} />
+            }
           />
         </Routes>
       </BrowserRouter>
