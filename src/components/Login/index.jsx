@@ -19,7 +19,7 @@ export function LoginForm({ onLogin }) {
     e.preventDefault();
 
     // Check if entered credentials match admin credentials
-    if (username === "admin" && password === "password") {
+    if (username === "unsaid" && password === "@@UnsaidFeelings") {
       setIsLoggedIn(true);
       onLogin(true);
       // Save login state to local storage

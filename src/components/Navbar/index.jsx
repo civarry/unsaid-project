@@ -23,12 +23,18 @@ export function Navbar() {
       <nav className={styles.navbar}>
         <ul>
           <li>
+            <CustomNavLink to="/login">⋘</CustomNavLink>
+          </li>
+          <li>
             <CustomNavLink to="/" exact>
               Confessions
             </CustomNavLink>
           </li>
           <li>
             <CustomNavLink to="/add">Add</CustomNavLink>
+          </li>
+          <li>
+            <CustomNavLink to="/login">⋙</CustomNavLink>
           </li>
         </ul>
       </nav>
