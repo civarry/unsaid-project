@@ -32,6 +32,7 @@
   width: 100%;
   align-items: center;
   justify-content: space-around;
+  position: relative;
 }
 
 input{
@@ -57,6 +58,7 @@ textarea{
   width: 100%;
   height: 100px;
   padding: 10px;
+  resize: none;
 }
 .search,
 textarea,
@@ -65,6 +67,7 @@ textarea,
   border: 2px solid #b48770;
   color: #614d40;
   border-radius: 10px;
+  font-family: 'Quattrocento', serif;
 }
 
 .search::placeholder,
@@ -74,7 +77,9 @@ textarea::placeholder,
 }
 .characterCounter {
   bottom: 4px;
-  left: 4px;
+  right: 10px;
   font-size: 12px;
   color: #808080;
+  font-family: 'Quattrocento', serif;
+  position: absolute;
 }
